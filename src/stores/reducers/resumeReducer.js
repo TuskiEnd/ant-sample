@@ -32,30 +32,30 @@ let initialState = {
   columnList: [{
     id: 0,
     tableId: 'name',
-    tableCollumName: 'aa',
+    tableCollumName: '姓名',
     excelCollumName: '表头1',
     status: 1,
     canEdit: 1,
     canView: 1,
-    canSearch: 0
+    canSearch: 1
   }, {
     id: 1,
     tableId: 'age',
-    tableCollumName: 'aa',
+    tableCollumName: '年龄',
     excelCollumName: '表头2',
     status: 0,
     canEdit: 0,
     canView: 1,
-    canSearch: 0
+    canSearch: 1
   }, {
     id: 2,
     tableId: 'sex',
-    tableCollumName: 'aa',
+    tableCollumName: '性别',
     excelCollumName: '表头3',
     status: 1,
     canEdit: 1,
     canView: 0,
-    canSearch: 0
+    canSearch: 1
   }, {
     id: 3,
     tableId: 'value',
