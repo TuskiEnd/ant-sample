@@ -52,7 +52,7 @@ const fileExport = (params) => {
 const batchUpdate = (params) => {
   return {
     type: types.BATCH_UPDATE,
-    payload: fetch(url.config.batchUpdate, params, {}, 'get')
+    payload: fetch(`${url.config.batchUpdate}?tableName=${params.tableName}`, params.list)
   }
 };
 

@@ -12,6 +12,6 @@ url.config.upload = `${url.prefix}file/upload`;
 // export
 url.config.export = `${url.prefix}file/export`;
 // batch
-url.config.batchUpdate = `${url.prefix}file/export`;
+url.config.batchUpdate = `${url.prefix}batchCommit`;
 
 export default url;
