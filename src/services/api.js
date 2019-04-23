@@ -1,8 +1,8 @@
 let url = {};
-url.prefix = '/';
+url.prefix = 'http://47.100.242.85:8112/fexcel-server/';
 url.config = {};
 // table list
-url.config.tableList = `${url.prefix}getTableCollum`;
+url.config.tableList = `${url.prefix}queryData`;
 // column
 url.config.columnList = `${url.prefix}getTableCollum`;
 // file map

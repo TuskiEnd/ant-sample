@@ -18,7 +18,7 @@ export const types = createTypes('resume/',
 // 获取文件list
 const getFileList = (params) => ({
   type: types.GET_FILE_LIST,
-  payload: fetch(url.config.fileList, params)
+  payload: fetch(url.config.fileList, params, {}, 'get')
 });
 
 // 获取table list
@@ -30,7 +30,7 @@ const getTableList = (params) => ({
 // 获取table list
 const getColumnList = (params) => ({
   type: types.GET_COLUMN_LIST,
-  payload: fetch(url.config.tableList, params)
+  payload: fetch(url.config.columnList, params, {}, 'get')
 });
 
 // 附件上传
@@ -44,7 +44,7 @@ const uploadFile = (params) => {
 const fileExport = (params) => {
   return {
     type: types.FILE_EXPORT,
-    payload: fetch(url.config.export, params)
+    payload: fetch(url.config.export, params, {}, 'get')
   }
 };
 

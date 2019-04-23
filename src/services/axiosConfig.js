@@ -1,5 +1,4 @@
 export const axiosUploadConfig = {
-  baseURL: '/',
   headers: { 'Content-Type': 'multipart/form-data' },
   method: 'post',
   withCredentials: true, // default
@@ -40,7 +39,7 @@ export const axiosBaseConfig = {
   headers: { 'Content-Type': 'application/json' },
   method: 'post',
   // 跨域请求，是否带上认证信息
-  withCredentials: true, // default
+  withCredentials: false, // default
   // http返回的数据类型
   // 默认是json，可选'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
   responseType: 'json', // default
@@ -54,7 +53,4 @@ export const axiosBaseConfig = {
     }
     return data;
   }],
-  // 返回数据预处理
-  transformResponse: [respData => respData,
-  ],
 };

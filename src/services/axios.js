@@ -4,23 +4,22 @@ import { axiosBaseConfig } from './axiosConfig';
 
 window.eventStore = new EE();
 
-export default (url, reqData, axiosConfig) => {
+export default (url, reqData, axiosConfig, method) => {
   const instance = axios.create(axiosConfig || axiosBaseConfig);
   instance.interceptors.response.use(
     (res) => {
-      const json = res.data;
-      if (json.data && (json.code < 0 || json.error || json.code > 20000)) {
-        res.data.code = -1;
-        res.data.message = json.msg || json.message;
-      } else if (json.code === 100302) {
-        const { code, data, msg } = json;
-        window.eventStore.emit('permisson', { code, data, message: msg });
-      }
-      return res.data;
+      console.log(res);
+      return res.data || res;
     },
     (error) => {
+      return JSON.parse(error.response.data)
     }
   );
-  return instance.post(url, reqData);
+  if (method && method.toUpperCase() === 'GET') {
+    return instance.get(url, { params: reqData });
+  } else {
+    console.log(reqData);
+    return instance.post(url, reqData);
+  }
 }
 
