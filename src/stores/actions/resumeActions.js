@@ -10,6 +10,7 @@ export const types = createTypes('resume/',
   async('UPLOAD_FILE'),
   async('FILE_EXPORT'),
   async('SUBMIT_RESUME'),
+  async('BATCH_UPDATE'),
   'EDIT_STORE',
   'RESET_STATE',
   'EDIT_DATA'
@@ -47,6 +48,13 @@ const fileExport = (params) => {
     payload: fetch(url.config.export, params, {}, 'get')
   }
 };
+// 批量更新
+const batchUpdate = (params) => {
+  return {
+    type: types.BATCH_UPDATE,
+    payload: fetch(url.config.batchUpdate, params, {}, 'get')
+  }
+};
 
 const editStore = (param) => ({
   type: types.EDIT_STORE,
@@ -72,4 +80,5 @@ export default {
   getColumnList,
   resetState,
   editData,
+  batchUpdate,
 }

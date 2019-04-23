@@ -53,6 +53,25 @@ export default function (state = initialState, action) {
         };
       }
     }
+    // BATCH_UPDATE
+    case types.BATCH_UPDATE_SUCCESS: {
+      const { message } = action.payload;
+      if (action.payload && action.payload.success) {
+        return {
+          ...state,
+          operateSuccessFlag: true,
+          operateFailFlag: false,
+          operateInfo: message || '更新成功',
+        };
+      } else {
+        return {
+          ...state,
+          operateSuccessFlag: false,
+          operateFailFlag: true,
+          operateInfo: message || '更新失败',
+        };
+      }
+    }
     // FILE_EXPORT
     case types.FILE_EXPORT_SUCCESS: {
       if (action.payload && action.payload.success) {
