@@ -8,7 +8,9 @@ export default (url, reqData, axiosConfig, method) => {
   const instance = axios.create(axiosConfig || axiosBaseConfig);
   instance.interceptors.response.use(
     (res) => {
-      console.log(res);
+      if (typeof res.data !== 'object') {
+        return JSON.parse(res.data);
+      }
       return res.data || res;
     },
     (error) => {
