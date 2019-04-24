@@ -96,7 +96,7 @@ export default function (state = initialState, action) {
       if (action.payload.success) {
         return {
           ...state,
-          columnList: action.payload.data || []
+          columnList: action.payload.data || [],
         };
       } else {
         return {
@@ -104,7 +104,7 @@ export default function (state = initialState, action) {
           operateSuccessFlag: false,
           operateFailFlag: true,
           operateInfo: message || '接口获取失败',
-          columnList: []
+          columnList: [],
         };
       }
     }

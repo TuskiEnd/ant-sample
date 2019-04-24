@@ -1,5 +1,5 @@
 let url = {};
-url.prefix = 'http://47.100.242.85:8112/fexcel-server/';
+url.prefix = 'http://47.100.242.85:8112/';
 url.config = {};
 // table list
 url.config.tableList = `${url.prefix}queryData`;

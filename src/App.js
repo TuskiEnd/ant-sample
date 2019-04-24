@@ -11,7 +11,11 @@ const routes = [
   {
     path: '/',
     getComponent: getComponent(Index)
-  }
+  },
+  {
+    path: '/employee',
+    getComponent: getComponent(Index)
+  },
 ];
 
 export default (props) => <Router history={props.history}

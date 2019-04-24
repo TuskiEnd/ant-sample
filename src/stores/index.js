@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import reducers from './reducers';
 import promiseMiddleware from 'redux-promise-middleware';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 
 export default function store() {
@@ -13,7 +13,7 @@ export default function store() {
     ...reducers,
     routing: routerReducer
   });
-  const middlewares = [routerMiddleware(browserHistory), thunkMiddleware, promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'ERROR'] })];
+  const middlewares = [routerMiddleware(hashHistory), thunkMiddleware, promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'ERROR'] })];
 
   if (process.env.NODE_ENV !== 'production') {
     middlewares.push(createLogger());
@@ -32,7 +32,7 @@ export default function store() {
         ...nextReducer,
         routing: routerReducer
       });
-      store.replaceReducer(nextReducer);
+      store.replaceReducer(nextRootReducer);
     });
   }
 
