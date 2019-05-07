@@ -13,6 +13,7 @@ let initialState = {
   tableList: [],
   fileList: [],
   refreshFileFlag: false,
+  columnListPage: []
 };
 
 export default function (state = initialState, action) {
@@ -53,6 +54,25 @@ export default function (state = initialState, action) {
         };
       }
     }
+    // TABLE_DELETE
+    case types.TABLE_DELETE_SUCCESS: {
+      const { message } = action.payload;
+      if (action.payload && action.payload.success) {
+        return {
+          ...state,
+          operateSuccessFlag: true,
+          operateFailFlag: false,
+          operateInfo: message || '删除成功',
+        };
+      } else {
+        return {
+          ...state,
+          operateSuccessFlag: false,
+          operateFailFlag: true,
+          operateInfo: message || '删除失败',
+        };
+      }
+    }
     // BATCH_UPDATE
     case types.BATCH_UPDATE_SUCCESS: {
       const { message } = action.payload;
@@ -90,6 +110,24 @@ export default function (state = initialState, action) {
         };
       }
     }
+    // TABLE_COLUMN_MANAGER
+    case types.TABLE_COLUMN_MANAGER_SUCCESS: {
+      if (action.payload && action.payload.success) {
+        return {
+          ...state,
+          operateSuccessFlag: true,
+          operateFailFlag: false,
+          operateInfo: '成功',
+        };
+      } else {
+        return {
+          ...state,
+          operateSuccessFlag: false,
+          operateFailFlag: true,
+          operateInfo: action.payload.message || '操作失败',
+        };
+      }
+    }
     // GET_column_LIST
     case types.GET_COLUMN_LIST_SUCCESS: {
       const { message } = action.payload;
@@ -105,6 +143,38 @@ export default function (state = initialState, action) {
           operateFailFlag: true,
           operateInfo: message || '接口获取失败',
           columnList: [],
+        };
+      }
+    }
+    // GET_column_LIST_PAGE
+    case types.GET_COLUMN_LIST_PAGE_SUCCESS: {
+      if (action.payload.success) {
+        const { list, pageSize, pageNum, total } = action.payload.data;
+        list && list.length > 0 && list.forEach(item => {
+          let temp = [];
+          item.can_search === 1 && temp.push('can_search');
+          item.can_view === 1 && temp.push('can_view');
+          item.can_edit === 1 && temp.push('can_edit');
+          item.initialChecked = temp;
+        });
+        return {
+          ...state,
+          pageInfo: {
+            pageSize,
+            pageNum,
+            total
+          },
+          columnListPage: list,
+          loading: false
+        }
+      } else {
+        return {
+          ...state,
+          operateSuccessFlag: false,
+          operateFailFlag: true,
+          operateInfo: action.payload.message || '接口获取失败',
+          columnListPage: [],
+          loading: false
         };
       }
     }

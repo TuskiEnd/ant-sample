@@ -11,6 +11,9 @@ export const types = createTypes('resume/',
   async('FILE_EXPORT'),
   async('SUBMIT_RESUME'),
   async('BATCH_UPDATE'),
+  async('TABLE_DELETE'),
+  async('GET_COLUMN_LIST_PAGE'),
+  async('TABLE_COLUMN_MANAGER'),
   'EDIT_STORE',
   'RESET_STATE',
   'EDIT_DATA'
@@ -32,6 +35,12 @@ const getTableList = (params) => ({
 const getColumnList = (params) => ({
   type: types.GET_COLUMN_LIST,
   payload: fetch(url.config.columnList, params, {}, 'get')
+});
+
+// 获取table list
+const getTableCollumPage = (params) => ({
+  type: types.GET_COLUMN_LIST_PAGE,
+  payload: fetch(url.config.getTableCollumPage, params)
 });
 
 // 附件上传
@@ -56,6 +65,22 @@ const batchUpdate = (params) => {
   }
 };
 
+// 删除文件
+const tableDelete = (params) => {
+  return {
+    type: types.TABLE_DELETE,
+    payload: fetch(url.config.tableDelete, params, {}, 'get')
+  }
+};
+
+// 删除文件
+const tableCollumManager = (params) => {
+  return {
+    type: types.TABLE_COLUMN_MANAGER,
+    payload: fetch(url.config.tableCollumManager, params)
+  }
+};
+
 const editStore = (param) => ({
   type: types.EDIT_STORE,
   bridge: param
@@ -72,6 +97,7 @@ const resetState = () => ({
 });
 
 export default {
+  tableDelete,
   editStore,
   getFileList,
   fileExport,
@@ -81,4 +107,6 @@ export default {
   resetState,
   editData,
   batchUpdate,
+  getTableCollumPage,
+  tableCollumManager,
 }
