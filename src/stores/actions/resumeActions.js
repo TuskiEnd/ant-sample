@@ -16,6 +16,7 @@ export const types = createTypes('resume/',
   async('TABLE_COLUMN_MANAGER'),
   'EDIT_STORE',
   'RESET_STATE',
+  'CLEAR_DATA',
   'EDIT_DATA'
 );
 
@@ -96,6 +97,11 @@ const resetState = () => ({
   type: types.RESET_STATE,
 });
 
+// clear list
+const clearData = ()=>({
+  type: types.CLEAR_DATA
+});
+
 export default {
   tableDelete,
   editStore,
@@ -109,4 +115,5 @@ export default {
   batchUpdate,
   getTableCollumPage,
   tableCollumManager,
+  clearData,
 }

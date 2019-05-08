@@ -12,6 +12,7 @@ let initialState = {
   },
   tableList: [],
   fileList: [],
+  columnList: [],
   refreshFileFlag: false,
   columnListPage: []
 };
@@ -231,6 +232,18 @@ export default function (state = initialState, action) {
         operateFailFlag: false,
         operateInfo: '',
         refreshFileFlag: false,
+      };
+    case types.CLEAR_DATA:
+      return {
+        ...state,
+        pageInfo: {
+          pageSize: 20,
+          pageNum: 1,
+          total: 0
+        },
+        tableList: [],
+        columnList: [],
+        columnListPage: []
       };
     default:
       return state;
