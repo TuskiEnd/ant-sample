@@ -14,7 +14,8 @@ let initialState = {
   fileList: [],
   columnList: [],
   refreshFileFlag: false,
-  columnListPage: []
+  columnListPage: [],
+  fileLoading: true
 };
 
 export default function (state = initialState, action) {
@@ -187,6 +188,7 @@ export default function (state = initialState, action) {
           operateFailFlag: false,
           operateInfo: '成功',
           refreshFileFlag: true,
+          fileLoading: false
         };
       } else {
         return {
@@ -194,6 +196,7 @@ export default function (state = initialState, action) {
           operateSuccessFlag: false,
           operateFailFlag: true,
           operateInfo: action.payload.message || '操作失败',
+          fileLoading: false
         };
       }
     case types.GET_TABLE_LIST_PENDING: {

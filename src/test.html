@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .ul {
+        transition: all 0.5s;
+    }
+
+    ul li {
+        height: 50px;
+        background-color: #52c41a;
+
+    }
+
+    .wrap {
+        height: 50px;
+        overflow: hidden;
+    }
+
+    .move {
+        transform: translateY(-50px);
+    }
+</style>
+<body>
+<div class="wrap">
+    <ul class="ul" id="ul" style="height: 50px">
+        <li>1111111</li>
+        <li style="background-color: #40a9ff">2222222</li>
+        <li>3333333</li>
+        <li style="background-color: #40a9ff">4444444</li>
+    </ul>
+</div>
+<script>
+  window.onload = function () {
+    var ulObj = document.getElementById('ul');
+    var index = 1;
+    var t1 = window.setInterval(() => {
+      var num = index * 50;
+      ulObj.setAttribute('class','ul move');
+      var temp = ulObj.firstChild;
+      ulObj.removeChild(temp)
+      ulObj.appendChild(temp);
+      var t2 = setTimeout(()=>{
+        ulObj.removeAttribute('class')
+      },0)
+      index++;
+    }, 1000);
+  }
+</script>
+</body>
+</html>
